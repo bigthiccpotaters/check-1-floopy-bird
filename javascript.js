@@ -22,13 +22,6 @@ var gravity = .2;
 var traction = .8;
 
 
-function drawCircle() {
-  ctx.beginPath();
-  ctx.arc(x, y, size, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.stroke();
-}
-
 
 document.addEventListener("keydown",moveUp); // read key press
 
@@ -37,6 +30,38 @@ function moveUp(){ //when key press, change dy value to make ball move up
 }
 
 
+
+var rectl = -300;
+var rectx = 550;
+var recty = 600;
+
+function drawRect() {
+  ctx.beginPath();
+  ctx.rect(rectx, recty, 50, rectl)
+  ctx.stroke();
+}
+
+function pipes() { //makes a pipe
+  drawRect(); //creates the pipe
+  rectx --; //every loop of the function changes the x value of the pipe to make it move left
+
+  if (rectx <= -50) { //if the rectangle goes past the wall of the canvas
+    rectx = 550; // reset the position to its original
+  }
+}
+
+setInterval(pipes,1); // loops pipe function to continuously generate pipes
+
+
+
+
+
+function drawCircle() {
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.stroke();
+}
 
 function draw() {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height ); //Clears the canvas every frame, so a new circle can be drawn.
@@ -61,27 +86,9 @@ function draw() {
 
 
 
-var rectl = -300;
-var rectx = 550;
-var recty = 600;
-
-function drawRect() {
-  ctx.beginPath();
-  ctx.rect(rectx, recty, 50, rectl)
-  ctx.stroke();
-}
 
 
-function pipes() { //makes a pipe
-  drawRect(); //creates the pipe
-  rectx --; //every loop of the function changes the x value of the pipe to make it move left
 
-  if (rectx <= -50) { //if the rectangle goes past the wall of the canvas
-    rectx = 550; // reset the position to its original
-  }
-}
-
-setInterval(pipes,5); // loops pipe function to continuously generate pipes
 
 
 /*----------------------------------------- Do not make changes below this line
