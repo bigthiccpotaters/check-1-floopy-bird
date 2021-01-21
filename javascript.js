@@ -22,6 +22,24 @@ var gravity = .2;
 var traction = .8;
 
 
+var rectl = 300;
+var rectx = 550;
+var recty = 300;
+
+function drawRect() {
+  ctx.beginPath();
+  ctx.rect(rectx, recty, 50, rectl)
+  ctx.stroke();
+  rectx --;
+}
+
+function drawCircle() {
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.stroke();
+}
+
 
 document.addEventListener("keydown",moveUp); // read key press
 
@@ -31,41 +49,10 @@ function moveUp(){ //when key press, change dy value to make ball move up
 
 
 
-var rectl = -300;
-var rectx = 550;
-var recty = 600;
-
-function drawRect() {
-  ctx.beginPath();
-  ctx.rect(rectx, recty, 50, rectl)
-  ctx.stroke();
-}
-
-function pipes() { //makes a pipe
-  drawRect(); //creates the pipe
-  rectx --; //every loop of the function changes the x value of the pipe to make it move left
-
-  if (rectx <= -50) { //if the rectangle goes past the wall of the canvas
-    rectx = 550; // reset the position to its original
-  }
-}
-
-setInterval(pipes,1); // loops pipe function to continuously generate pipes
-
-
-
-
-
-function drawCircle() {
-  ctx.beginPath();
-  ctx.arc(x, y, size, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.stroke();
-}
-
 function draw() {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height ); //Clears the canvas every frame, so a new circle can be drawn.
     drawCircle();
+    drawRect();
 
     if (x + dx > myCanvas.width - size ||  x + dx < size) { //If the circle's x position exceeds the width of the canvas...
       dx = -dx; //The ball's x direction will be flipped, and it will bounce a specific distance (damping).
@@ -79,6 +66,13 @@ function draw() {
 
     if (((y + dy) + size) <= myCanvas.height) { // if the y position is below or equal to the bottom  of the canvas
       y += dy; // then add dy to its y value
+    }
+    if (rectx <= -50) { //if the rectangle goes past the wall of the canvas
+      rectx = 550; // reset the position to its original
+    }
+    if (x >= rectx && y >= recty) {
+      location.reload();
+
     }
   }
   setInterval(draw, 15); //repeat the draw function
