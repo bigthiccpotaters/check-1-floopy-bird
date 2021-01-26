@@ -12,8 +12,10 @@ var ctx = canvas.getContext("2d");
 
 
 
-var x = myCanvas.width / 2;
-var y = myCanvas.height / 2;
+ctx.fillStyle = "Red";
+
+var ballx = myCanvas.width / 2;
+var bally = myCanvas.height / 2;
 var dx = 10;
 var dy = 10;
 var size = 15;
@@ -24,18 +26,33 @@ var traction = .8;
 
 var rectl = 300;
 var rectx = 550;
-var recty = 300;
+var recty = 500;
+
+var rectltop = 500;
+var rectxtop = 550;
+var rectytop = -300;
 
 function drawRect() {
   ctx.beginPath();
-  ctx.rect(rectx, recty, 50, rectl)
+  ctx.rect(rectx, recty, 50, rectl);
+  ctx.fill();
   ctx.stroke();
   rectx --;
 }
 
+function drawRecttop() {
+  ctx.beginPath();
+  ctx.rect(rectxtop, rectytop, 50, rectltop);
+  ctx.fill();
+  ctx.stroke();
+  rectxtop --;
+}
+
+
+
 function drawCircle() {
   ctx.beginPath();
-  ctx.arc(x, y, size, 0, 2 * Math.PI);
+  ctx.arc(ballx, bally, size, 0, 2 * Math.PI);
   ctx.fill();
   ctx.stroke();
 }
@@ -53,29 +70,28 @@ function draw() {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height ); //Clears the canvas every frame, so a new circle can be drawn.
     drawCircle();
     drawRect();
+    drawRecttop();
 
-    if (x + dx > myCanvas.width - size ||  x + dx < size) { //If the circle's x position exceeds the width of the canvas...
+    if (ballx + dx > myCanvas.width - size ||  ballx + dx < size) { //If the circle's x position exceeds the width of the canvas...
       dx = -dx; //The ball's x direction will be flipped, and it will bounce a specific distance (damping).
     }
 
-    if(y + dy > myCanvas.height - size || y + dy < size) { //If the circle's y position exceeds the height of the canvas...
+    if(bally + dy > myCanvas.height - size || bally + dy < size) { //If the circle's y position exceeds the height of the canvas...
       dy = -dy * dampening; //Its y direction will be flipped, and it's speed will decrease.
     }
 
     dy += gravity; //Adds the gravity value to the ball's dy value, giving it gravity
 
-    if (((y + dy) + size) <= myCanvas.height) { // if the y position is below or equal to the bottom  of the canvas
-      y += dy; // then add dy to its y value
+    if (((bally + dy) + size) <= myCanvas.height) { // if the y position is below or equal to the bottom  of the canvas
+      bally += dy; // then add dy to its y value
     }
     if (rectx <= -50) { //if the rectangle goes past the wall of the canvas
       rectx = 550; // reset the position to its original
-    }
-    if (x >= rectx && y >= recty) {
-      location.reload();
-
+      rectxtop = 550;
     }
   }
   setInterval(draw, 15); //repeat the draw function
+
 
 
 

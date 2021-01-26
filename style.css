@@ -31,3 +31,20 @@ canvas{
 fillRect{
   background-color: #008000;
 }
+
+
+@keyframes moveBackground {
+  from {background-position: 1000px 0px;}
+  to {background-position: 0px 0px;}
+  /* makes the image move from right to left */
+}
+
+#myCanvas {
+  border-style: solid;
+  align-self: center;
+  background-image: url("kenau.JPG");
+  background-position: 0px 0px;
+  background-repeat: repeat-x;;
+  animation: moveBackground 25s linear infinite;
+  /* makes the image move in a direction forever in a straight path/line */
+}
