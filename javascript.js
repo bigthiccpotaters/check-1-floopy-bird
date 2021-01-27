@@ -10,9 +10,9 @@ have an issue bellow. --------------------------------------------------------*/
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-
-
 ctx.fillStyle = "Red";
+
+
 
 var ballx = myCanvas.width / 2;
 var bally = myCanvas.height / 2;
@@ -39,6 +39,7 @@ function drawRect() { //creates rectangle on bottom of canvas
   ctx.stroke();
   rectx --;
 }
+
 
 function drawRecttop() { //creates a rectangle on the top of the canvas
   ctx.beginPath();
