@@ -32,7 +32,7 @@ var rectltop = 500;
 var rectxtop = 550;
 var rectytop = -300;
 
-function drawRect() {
+function drawRect() { //creates rectangle on bottom of canvas
   ctx.beginPath();
   ctx.rect(rectx, recty, 50, rectl);
   ctx.fill();
@@ -40,7 +40,7 @@ function drawRect() {
   rectx --;
 }
 
-function drawRecttop() {
+function drawRecttop() { //creates a rectangle on the top of the canvas
   ctx.beginPath();
   ctx.rect(rectxtop, rectytop, 50, rectltop);
   ctx.fill();
