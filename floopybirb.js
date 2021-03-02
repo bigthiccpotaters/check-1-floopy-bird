@@ -8,15 +8,15 @@ var rectWidth = Math.floor(Math.random() * (125 - 100) + 100); //Randomly genera
 var rectHeight = Math.floor(Math.random() * (190 - 170) + 170); //Randomly generates a number which will determine the height of the pipes.
 var rectLower = {xPos: c.width-rectWidth, yPos: c.height-rectHeight, width: rectWidth, height: rectHeight};
 var rectUpper = {xPos: c.width-rectWidth, yPos: 0, width: rectWidth, height: rectHeight};
-var rectArray = []; //Will bbe used later to draw our pipes.
+var rectArray = []; //Will be used later to draw our pipes.
 var timer = 0; //Will be used later to spawn the pipes at a specific time.
 var score = 0; //Will increment every time you go through a pipe.
 var diffTimer = 0; //Will be used to determine the difficulty of the game. At a specific time, pipes will be drawn more frequently.
 
 window.addEventListener("keydown", ev => { //Looks for a keypress, and also looks for a specific keycode
-  if (ev.keyCode === 13) { //If the keycode is 32, which in this case is the enter key...
+  if (ev.keyCode === 13) { //If the keycode is 13, which in this case is the enter key...
     var startmenu = document.getElementById("startScreen"); //The startmenu is called...
-    startmenu.remove(); //And then the start menu is removed, 'unpausing' the game.
+    startmenu.remove(); //And then the start menu is removed from the screen, and 'unpauses' the game.
 
 var birb = new Image(); //makes bird image
 birb.src = "birb(1).png"; //gets bird image
